@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import Image from "next/image"
 
 interface NavbarProps {
   onCtaClick: () => void
@@ -42,21 +41,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onCtaClick }) => {
             className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={() => scrollToSection("hero")}
         >
-          <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-primary/50 shadow-neon">
-            <Image
-              src="/icon.png"
-              alt="Logo"
-              width={40}
-              height={40}
-              className="object-cover"
-            />
-          </div>
           <div className="flex flex-col">
-            <span className="font-bold text-lg leading-none uppercase tracking-wider text-white">
-              Ambassador
-            </span>
-            <span className="text-[10px] text-primary font-mono tracking-[0.2em] uppercase">
-              Program
+            <span className="font-bold text-lg leading-none tracking-wider text-white">
+              Ambassador_Hub
             </span>
           </div>
         </div>
