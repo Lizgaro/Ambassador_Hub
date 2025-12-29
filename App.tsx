@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import { Hero, PainPoints } from "./sections/Part1_Intro"
 import { Solution, Features } from "./sections/Part2_Solution"
