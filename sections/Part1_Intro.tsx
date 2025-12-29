@@ -10,7 +10,7 @@ interface Props {
 
 export const Hero: React.FC<Props> = ({ onCtaClick }) => {
   return (
-    <Section className="min-h-screen pt-32 pb-20 justify-center text-center bg-gradient-to-b from-background via-background to-card">
+    <Section id="hero" className="min-h-screen pt-32 pb-20 justify-center text-center bg-gradient-to-b from-background via-background to-card">
       <FadeIn>
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase leading-[1.1] mb-8 tracking-tight">
           Хватит продавать{" "}

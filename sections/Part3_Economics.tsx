@@ -10,7 +10,7 @@ interface Props {
 
 export const Economics: React.FC<Props> = ({ onCtaClick }) => {
   return (
-    <Section className="bg-card">
+    <Section id="economics" className="bg-card">
       <FadeIn>
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold uppercase text-center mb-4 text-foreground">
           Сколько ты будешь зарабатывать?
@@ -68,7 +68,7 @@ export const Comparison: React.FC<Props> = ({ onCtaClick }) => {
   ]
 
   return (
-    <Section className="bg-background">
+    <Section id="comparison" className="bg-background">
       <FadeIn>
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold uppercase text-center mb-16 text-foreground">
           В цифрах
