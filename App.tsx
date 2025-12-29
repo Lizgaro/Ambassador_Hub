@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { Navbar } from "./components/Navbar"
 import { Hero, PainPoints } from "./sections/Part1_Intro"
 import { Solution, Features } from "./sections/Part2_Solution"
 import { Economics, Comparison } from "./sections/Part3_Economics"
@@ -13,6 +14,7 @@ const App: React.FC = () => {
 
   return (
     <div className="w-full bg-background text-foreground overflow-x-hidden font-sans selection:bg-primary selection:text-primary-foreground">
+      <Navbar onCtaClick={handleBotRedirect} />
       <Hero onCtaClick={handleBotRedirect} />
       <PainPoints />
       <Solution onCtaClick={handleBotRedirect} />
