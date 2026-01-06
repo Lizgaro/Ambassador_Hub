@@ -108,6 +108,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --font-inter: var(--font-inter);
+  --font-montserrat: var(--font-montserrat);
+  --font-orbitron: var(--font-orbitron);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);

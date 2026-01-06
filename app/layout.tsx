@@ -1,11 +1,12 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Geist_Mono } from "next/font/google"
+import { Inter, Montserrat, Orbitron } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin", "cyrillic"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" })
+const montserrat = Montserrat({ subsets: ["latin", "cyrillic"], variable: "--font-montserrat" })
+const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" })
 
 export const metadata: Metadata = {
   title: "Стань амбассадором AI-продукта | Заработок от 300 000 ₽/мес",
@@ -73,7 +74,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className={`font-sans antialiased`}>
+      <body className={`${inter.variable} ${montserrat.variable} ${orbitron.variable} font-sans antialiased bg-[#050A14] text-white selection:bg-cyan-500/30 selection:text-cyan-50`}>
         {children}
         <Analytics />
       </body>
