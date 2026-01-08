@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useEffect, useState, useRef } from "react"
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary"
@@ -123,6 +124,45 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const [showModal, setShowModal] = useState(false)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+
+  // Magnetic effect logic
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!buttonRef.current) return
+
+      const rect = buttonRef.current.getBoundingClientRect()
+      const centerX = rect.left + rect.width / 2
+      const centerY = rect.top + rect.height / 2
+
+      const distance = Math.sqrt(
+        Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
+      )
+
+      if (distance < 150) {
+        // Attraction strength
+        x.set((e.clientX - centerX) * 0.15)
+        y.set((e.clientY - centerY) * 0.15)
+        mouseX.set(e.clientX - rect.left)
+        mouseY.set(e.clientY - rect.top)
+      } else {
+        x.set(0)
+        y.set(0)
+        mouseX.set(0)
+        mouseY.set(0)
+      }
+    }
+
+    // Add global listener to track mouse even outside button for magnetic field feel
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [x, y, mouseX, mouseY])
+
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -137,25 +177,42 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
   }
 
   const baseClasses =
-    "relative overflow-hidden font-bold uppercase tracking-wider transition-all duration-300 transform rounded-full flex items-center justify-center"
+    "relative overflow-hidden font-bold uppercase tracking-wider transition-all duration-300 rounded-full flex items-center justify-center cursor-pointer"
   const sizeClasses = "h-[56px] md:h-[64px] px-8 text-[15px] md:text-[17px]"
 
   const variantClasses =
     variant === "primary"
-      ? "bg-gradient-to-r from-orange-500 to-amber-500 text-background shadow-cta hover:shadow-cta-hover hover:scale-[1.02] hover:-translate-y-1"
+      ? "bg-gradient-to-r from-orange-500 to-amber-500 text-background shadow-cta magnetic-glow"
       : "border-2 border-primary text-primary hover:bg-primary hover:text-background"
 
   const widthClass = fullWidth ? "w-full" : "w-full md:w-[300px]"
 
+  // Dynamic gradient for glow effect on hover
+  const glowBackground = useMotionTemplate`radial-gradient(
+    circle at ${mouseX}px ${mouseY}px,
+    rgba(255, 255, 255, 0.4),
+    transparent 80%
+  )`
+
   return (
     <>
-      <button
+      <motion.button
+        ref={buttonRef}
+        style={{ x, y }}
         className={`${baseClasses} ${sizeClasses} ${variantClasses} ${widthClass} ${className}`}
         onClick={handleClick}
-        {...props}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        {...props as any}
       >
-        {children}
-      </button>
+         {variant === "primary" && (
+           <motion.div
+            className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300"
+            style={{ background: glowBackground }}
+           />
+         )}
+        <span className="relative z-10">{children}</span>
+      </motion.button>
       <ConsentModal isOpen={showModal} onClose={() => setShowModal(false)} onConfirm={handleConfirm} />
     </>
   )
