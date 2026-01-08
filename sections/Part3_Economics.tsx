@@ -10,9 +10,9 @@ interface Props {
 
 export const Economics: React.FC<Props> = ({ onCtaClick }) => {
   return (
-    <Section id="economics" className="relative overflow-hidden">
+    <Section id="economics" className="relative overflow-hidden z-10">
       {/* Background Ambience */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[100px] animate-pulse"></div>
         <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }}></div>
       </div>
@@ -58,14 +58,18 @@ export const Comparison: React.FC<Props> = ({ onCtaClick }) => {
   ]
 
   return (
-    <Section id="comparison" className="bg-[#050A14] relative">
+    <Section id="comparison" className="bg-[#050A14] relative z-10">
+
+       {/* Aurora Background */}
+       <div className="absolute inset-0 animate-aurora opacity-20 pointer-events-none -z-10"></div>
+
       <FadeIn>
         <h2 className="text-3xl md:text-5xl font-black uppercase text-center mb-16 font-orbitron text-white">
           Эволюция Дохода
         </h2>
       </FadeIn>
 
-      <div className="w-full max-w-4xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto glass-panel rounded-3xl p-8 border border-white/5">
         <div className="grid grid-cols-3 gap-4 mb-6 pb-4 border-b border-white/10">
           <div className="text-xs md:text-sm text-gray-500 uppercase tracking-widest font-orbitron">Критерий</div>
           <div className="text-xs md:text-sm text-gray-500 uppercase tracking-widest text-center font-orbitron">Старая Модель</div>
@@ -78,12 +82,12 @@ export const Comparison: React.FC<Props> = ({ onCtaClick }) => {
           {rows.map((row, idx) => (
             <FadeIn key={idx} delay={idx * 50}>
               <div className={`
-                grid grid-cols-3 gap-4 items-center py-4 px-4 rounded-xl transition-all duration-300
+                grid grid-cols-3 gap-4 items-center py-4 px-4 rounded-xl transition-all duration-300 group
                 ${row.highlight ? 'bg-gradient-to-r from-transparent via-cyan-900/10 to-transparent border border-cyan-500/10' : 'hover:bg-white/5'}
               `}>
                 <div className="text-sm md:text-base font-medium text-gray-400 font-montserrat">{row.label}</div>
-                <div className="text-sm md:text-base text-gray-600 text-center font-montserrat">{row.left}</div>
-                <div className={`text-sm md:text-base font-bold text-center font-montserrat ${row.highlight ? 'text-cyan-300' : 'text-gray-200'}`}>
+                <div className="text-sm md:text-base text-gray-600 text-center font-montserrat group-hover:text-gray-500 transition-colors">{row.left}</div>
+                <div className={`text-sm md:text-base font-bold text-center font-montserrat ${row.highlight ? 'text-cyan-300 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]' : 'text-gray-200 group-hover:text-white transition-colors'}`}>
                   {row.right}
                 </div>
               </div>
