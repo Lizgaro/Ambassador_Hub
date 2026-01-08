@@ -9,7 +9,7 @@ import { HowItWorks, EconomicsDetails, FinalCTA } from "./sections/Part4_Final"
 
 const App: React.FC = () => {
   const handleBotRedirect = () => {
-    window.open("https://t.me/LMINFLUENCER_bot", "_blank")
+    console.log("User confirmed consent, redirecting to bot...")
   }
 
   return (
