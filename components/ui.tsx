@@ -21,6 +21,8 @@ interface ConsentModalProps {
   onConfirm: () => void
 }
 
+const TELEGRAM_BOT_URL = "https://t.me/LMINFLUENCER_bot"
+
 export const ConsentModal: React.FC<ConsentModalProps> = ({ isOpen, onClose, onConfirm }) => {
   const [privacyAccepted, setPrivacyAccepted] = useState(false)
   const [offerAccepted, setOfferAccepted] = useState(false)
@@ -32,6 +34,7 @@ export const ConsentModal: React.FC<ConsentModalProps> = ({ isOpen, onClose, onC
   const handleConfirm = () => {
     if (canProceed) {
       onConfirm()
+      window.open(TELEGRAM_BOT_URL, "_blank")
     }
   }
 
