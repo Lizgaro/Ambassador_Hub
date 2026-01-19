@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
+import { ConsentModal } from "./ui"
 
 interface NavbarProps {
   onCtaClick: () => void
@@ -10,6 +11,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onCtaClick }) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +27,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onCtaClick }) => {
       element.scrollIntoView({ behavior: "smooth" })
       setIsMobileMenuOpen(false)
     }
+  }
+
+  const handleCtaClick = () => {
+    setShowModal(true)
+    setIsMobileMenuOpen(false)
+  }
+
+  const handleConfirm = () => {
+    setShowModal(false)
+    onCtaClick()
   }
 
   return (
@@ -67,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCtaClick }) => {
         {/* CTA Button */}
         <div className="hidden md:block">
           <button
-            onClick={onCtaClick}
+            onClick={handleCtaClick}
             className="bg-primary text-black font-bold uppercase text-xs px-6 py-3 rounded-full hover:bg-white transition-colors duration-300 shadow-neon-hover tracking-widest"
           >
             Перейти в бота
@@ -107,16 +119,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onCtaClick }) => {
             )
           })}
           <button
-            onClick={() => {
-              onCtaClick()
-              setIsMobileMenuOpen(false)
-            }}
+            onClick={handleCtaClick}
             className="w-full max-w-xs bg-primary text-black font-bold uppercase text-sm px-6 py-4 rounded-full hover:bg-white transition-colors duration-300 shadow-neon tracking-widest mt-4"
           >
             Перейти в бота
           </button>
         </div>
       </div>
+
+      <ConsentModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleConfirm}
+      />
     </header>
   )
 }
