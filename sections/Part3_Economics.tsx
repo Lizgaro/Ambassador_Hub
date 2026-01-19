@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { Section, PrimaryButton, FadeIn } from "../components/ui"
-import { RevenueCalculator } from "../components/RevenueCalculator"
 
 interface Props {
   onCtaClick: () => void
@@ -16,19 +15,6 @@ export const Economics: React.FC<Props> = ({ onCtaClick }) => {
         <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[100px] animate-pulse"></div>
         <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }}></div>
       </div>
-
-      <FadeIn>
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 font-orbitron tracking-tighter">
-          Твой Потенциал
-        </h2>
-        <p className="text-gray-400 text-center mb-16 text-lg max-w-2xl mx-auto">
-          Рассчитай, сколько ты будешь зарабатывать, если перестанешь продавать рекламу и начнешь строить свой бизнес.
-        </p>
-      </FadeIn>
-
-      <FadeIn delay={100} className="w-full relative z-10">
-        <RevenueCalculator onCtaClick={onCtaClick} />
-      </FadeIn>
 
       <div className="mt-20 text-center relative z-10">
         <FadeIn delay={300}>
