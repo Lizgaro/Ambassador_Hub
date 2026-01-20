@@ -1,5 +1,5 @@
 
-> influencer-to-owner@0.0.0 dev
+> influencer-to-owner@0.0.0 dev /app
 > next dev
 
 ▲ Next.js 16.1.1 (Turbopack)
@@ -12,7 +12,6 @@ This information is used to shape Next.js' roadmap and prioritize features.
 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
 https://nextjs.org/telemetry
 
-✓ Ready in 856ms
+✓ Ready in 852ms
 ○ Compiling / ...
- GET / 200 in 3.7s (compile: 3.4s, render: 311ms)
-[?25h
+ GET / 200 in 3.9s (compile: 3.6s, render: 376ms)
