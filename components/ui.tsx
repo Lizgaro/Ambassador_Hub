@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useEffect, useState, useRef } from "react"
+import { createPortal } from "react-dom"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary"
@@ -26,8 +27,14 @@ const TELEGRAM_BOT_URL = "https://t.me/LMINFLUENCER_bot"
 export const ConsentModal: React.FC<ConsentModalProps> = ({ isOpen, onClose, onConfirm }) => {
   const [privacyAccepted, setPrivacyAccepted] = useState(false)
   const [offerAccepted, setOfferAccepted] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  if (!isOpen) return null
+  useEffect(() => {
+    setMounted(true)
+    return () => setMounted(false)
+  }, [])
+
+  if (!isOpen || !mounted) return null
 
   const canProceed = privacyAccepted && offerAccepted
 
@@ -38,8 +45,8 @@ export const ConsentModal: React.FC<ConsentModalProps> = ({ isOpen, onClose, onC
     }
   }
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
       <div className="relative bg-card border border-border rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl">
         <button
@@ -113,7 +120,8 @@ export const ConsentModal: React.FC<ConsentModalProps> = ({ isOpen, onClose, onC
           Нажимая кнопку, вы будете перенаправлены в Telegram
         </p>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
 

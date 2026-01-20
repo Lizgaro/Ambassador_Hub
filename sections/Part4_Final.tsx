@@ -174,14 +174,6 @@ export const FinalCTA: React.FC<Props> = ({ onCtaClick }) => {
           </PrimaryButton>
         </div>
 
-        <div className="max-w-md mx-auto mb-12 w-full">
-          <div className="animate-pulse bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl px-8 py-4 shadow-cta flex items-center justify-center gap-3 transform hover:scale-[1.02] transition-transform">
-            <Zap className="w-6 h-6 text-background fill-background flex-shrink-0" />
-            <span className="font-bold text-background text-sm md:text-base leading-tight text-left md:text-center">
-              Запишись до 13 января — получишь секретный бонус на встрече
-            </span>
-          </div>
-        </div>
 
         <p className="mt-6 text-sm text-muted-foreground max-w-sm mx-auto leading-relaxed">
           Без обязательств. Просто посмотришь цифры. <br />
