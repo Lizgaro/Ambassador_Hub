@@ -11,7 +11,7 @@ export const Economics: React.FC<Props> = ({ onCtaClick }) => {
   return (
     <Section id="economics" className="relative overflow-hidden">
       {/* Background Ambience */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[100px] animate-pulse"></div>
         <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }}></div>
       </div>
