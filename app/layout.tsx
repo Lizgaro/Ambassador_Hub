@@ -9,6 +9,7 @@ const montserrat = Montserrat({ subsets: ["latin", "cyrillic"], variable: "--fon
 const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ambassadorhub.ru"),
   title: "Стань амбассадором AI-продукта | Заработок от 300 000 ₽/мес",
   description:
     "Зарабатывай в 10 раз больше как амбассадор AI-продукта. Получи персональный расчёт дохода за 2 минуты. Обучение, поддержка, готовые материалы.",
